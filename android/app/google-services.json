@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "286202067716",
+    "firebase_url": "https://fingerprint-vs-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "fingerprint-vs",
+    "storage_bucket": "fingerprint-vs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286202067716:android:72572ee9f7355f88956e51",
+        "android_client_info": {
+          "package_name": "com.fingerprintvotingapp.fingerprin_voting_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286202067716-s5p48oij5d14a681hti8nlqvddbt8a6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIk1cpW5j5kh-pIK11lMkDr44Aro_ASZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286202067716-s5p48oij5d14a681hti8nlqvddbt8a6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286202067716:android:9825a180f0f6c3e5956e51",
+        "android_client_info": {
+          "package_name": "com.sap.livevote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "286202067716-s5p48oij5d14a681hti8nlqvddbt8a6q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIk1cpW5j5kh-pIK11lMkDr44Aro_ASZo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286202067716-s5p48oij5d14a681hti8nlqvddbt8a6q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
