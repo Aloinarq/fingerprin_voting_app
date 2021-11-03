@@ -23,7 +23,7 @@ class LocalAuthApi {
   }
 
   static Future<bool> authenticate() async{
-    final isAwailable = await hasBiometrics();
+    final isAvailable = await hasBiometrics();
     try{
       return await _auth.authenticate(
         localizedReason: 'Scan fingerprint to authenticate',
@@ -38,10 +38,10 @@ class LocalAuthApi {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String _username = "";
+  String email = "";
   String _password = "";
   bool _obscureText = true;
-  //final AuthService _auth = AuthService();
+  final AuthService _auth = AuthService();
 
 
   void _togglePasswordVisibility() {
@@ -65,13 +65,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Username"),
+              const Text("email"),
               const SizedBox(height: 16),
               TextField(
                 decoration: const InputDecoration(border: OutlineInputBorder()),
                 onChanged: (value) {
               setState(() {
-              _username = value;
+              email = value;
               });
               }
               ),
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 56,
                     width: 186,
                     child: ElevatedButton(
-                        onPressed: (_username.isEmpty == true || _password.isEmpty == true)
+                        onPressed: (email.isEmpty == true || _password.isEmpty == true)
                             ? null
                             : () async {
                             Navigator.pushReplacementNamed(context, '/home');
