@@ -16,24 +16,21 @@ class FingerVoteApp extends StatelessWidget {
   Widget build(BuildContext context){
     return MaterialApp(
       home: Wrapper(),
-      // initialRoute: "/",
-      // routes: {
-      //   "/" : (context) => const Scaffold(
-      //     body: LoginScreen(),
-      //   ),
-      //   '/home' : (context) => Scaffold(
-      //     appBar: AppBar(
-      //       title: const Text("Homescreen"),
-      //     ),
-      //     body: const HomeScreen(),
-      //   ),
-      //   '/registerscreen' : (context) => Scaffold(
-      //     appBar: AppBar(
-      //       title: const Text("Register screen"),
-      //     ),
-      //     body: const RegisterScreen(),
-      //   )
-      // },
+      initialRoute: "/",
+      routes: {
+        '/polls' : (context) => Scaffold(
+          appBar: AppBar(
+            title: const Text("Polls screen"),
+          ),
+          body: const HomeScreen(),
+        ),
+        '/registerscreen' : (context) => Scaffold(
+          appBar: AppBar(
+            title: const Text("Register screen"),
+          ),
+          body: const RegisterScreen(),
+        )
+      },
     );
   }
 }

@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("email"),
+              Text("Email address", style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(height: 16),
               TextField(
                 decoration: const InputDecoration(border: OutlineInputBorder()),
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
               }
               ),
               const SizedBox(height: 16),
-              const Text("Password"),
+              Text("Password", style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(height: 16),
               TextField(
                 obscureText: _obscureText,

@@ -10,6 +10,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Container(
+        height: double.infinity,
+        margin: const EdgeInsets.all(24.0),
+        child: const Text("At the moment just a test :)"),
+      )
+    );
   }
 }

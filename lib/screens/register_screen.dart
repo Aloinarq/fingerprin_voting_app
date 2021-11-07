@@ -10,7 +10,9 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  String _username = "";
+  String _fullName = "";
+  String _address = "";
+  String _cnp = "";
   String _email = "";
   String _password = "";
   String _passwordAgain = "";
@@ -19,13 +21,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _validateEmail(String value) {
     String pattern =
         r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     return (regExp.hasMatch(value));
   }
 
   bool _validatePassword(String value) {
     String pattern = r'^(?=.*?[A-Z])(?=.*?[0-9]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     return (regExp.hasMatch(value));
   }
 
@@ -49,21 +51,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Username",
-                  style: Theme.of(context).textTheme.headline5),
-              SizedBox(height: 16),
-              Text("Type in your desired username",
+              Text("Type in your full name",
                   style: Theme.of(context).textTheme.subtitle2),
               SizedBox(height: 8),
               TextField(
                   decoration: InputDecoration(border: OutlineInputBorder()),
                   onChanged: (value) {
                     setState(() {
-                      _username = value;
+                      _fullName = value;
+                    });
+                  }),
+              SizedBox(height: 16),Text("Type in your address",
+                  style: Theme.of(context).textTheme.subtitle2),
+              SizedBox(height: 8),
+              TextField(
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  onChanged: (value) {
+                    setState(() {
+                      _address = value;
                     });
                   }),
               SizedBox(height: 16),
-              Text("Email here",
+              Text("Type in your CNP",
+                  style: Theme.of(context).textTheme.subtitle2),
+              SizedBox(height: 8),
+              TextField(
+                  decoration: InputDecoration(border: OutlineInputBorder()),
+                  onChanged: (value) {
+                    setState(() {
+                      _cnp = value;
+                    });
+                  }),
+              SizedBox(height: 16),
+              Text("Type in your e-mail address",
                   style: Theme.of(context).textTheme.subtitle2),
               SizedBox(height: 8),
               TextField(
@@ -76,6 +96,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               SizedBox(height: 16),
               Text("Create password",
                   style: Theme.of(context).textTheme.subtitle2),
+              Text("(minimum 8 characters, containing an uppercase letter and a number)",
+                  style: Theme.of(context).textTheme.caption,
+              ),
               SizedBox(height: 8),
               TextField(
                 obscureText: _obscureText,
@@ -114,22 +137,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     height: 56,
                     width: double.maxFinite,
                     child: ElevatedButton(
-                      onPressed: (_username.isEmpty == true || _email.isEmpty == true || _validateEmail(_email) == false || !(_password == _passwordAgain) ||
-                          _validatePassword(_password) == false)
+                      onPressed: (_fullName.isEmpty == true || _address.isEmpty == true || _cnp.isEmpty == true || _email.isEmpty == true
+                          || _validateEmail(_email) == false || !(_password == _passwordAgain) || _validatePassword(_password) == false)
                           ? null
                           : () async {
                         bool _isCallSuccessful = true;
                         if (_isCallSuccessful == true) {
                           Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                          // Navigator.pushReplacementNamed(context, "/polls");
                           final snackBar = SnackBar(
                             backgroundColor: Colors.blueAccent,
                             content: Row(
                               children: [
-                                Icon(Icons.check_circle_rounded),
-                                SizedBox(width: 8),
+                                const Icon(Icons.check_circle_rounded),
+                                const SizedBox(width: 8),
                                 Expanded(
-                                    child: Text("Success",
-                                        style: Theme.of(context).textTheme.bodyText1)),
+                                    child: Text("Success", style: Theme.of(context).textTheme.bodyText1)),
                               ],
                             ),
                           );
@@ -138,14 +161,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
-                              return AlertDialog(
+                              return const AlertDialog(
                                 title: Text("Failure"),
                               );
                             },
                           );
                         }
                       },
-                      child: Text(
+                      child: const Text(
                         "Register",
                       ),
                     ),
