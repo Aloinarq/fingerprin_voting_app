@@ -153,7 +153,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           bool _isCallSuccessful = await AuthService().registerEmailPassword(_email, _password);
                           if (_isCallSuccessful == true) {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-                            // Navigator.pushReplacementNamed(context, "/polls");
+                            //Navigator.pushReplacementNamed(context, "/polls");
                             final snackBar = SnackBar(
                               backgroundColor: Colors.blueAccent,
                               content: Row(
@@ -171,7 +171,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               context: context,
                               builder: (BuildContext context) {
                                 return const AlertDialog(
-                                  title: Text("Failure"),
+                                  title: Text("This email is already in use"),
                                 );
                               },
                             );

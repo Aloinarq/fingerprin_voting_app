@@ -13,7 +13,7 @@ class AuthService {
       return success;
     } catch(e) {
       print(e.toString());
-      return null;
+      return false;
     }
   }
 }
