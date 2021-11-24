@@ -5,6 +5,7 @@ class Firestore {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  CollectionReference candidates = FirebaseFirestore.instance.collection('candidates');
 
   Future<void> addUser(String fullName, String address, String cnp) async {
     return users.add({
@@ -13,5 +14,9 @@ class Firestore {
       "fullName" : fullName
     }).then((value) => print("User added"))
       .catchError((onError) => print(onError.toString()));
+  }
+
+  Future<void> getUsers() async {
+
   }
 }

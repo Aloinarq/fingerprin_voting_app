@@ -1,3 +1,4 @@
+import 'package:fingerprin_voting_app/services/check_things.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -151,29 +152,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             || _validateEmail(_email) == false || !(_password == _passwordAgain) || _validatePassword(_password) == false)
                             ? null
                             : () async {
+                          bool _isConnected = await CheckThings().internet("www.firebase.com");
                           bool _isCallSuccessful = await AuthService().registerEmailPassword(_email, _password);
-                          if (_isCallSuccessful == true) {
-                            await Firestore().addUser(_fullName, _address, _cnp);
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-                            //Navigator.pushReplacementNamed(context, "/polls");
-                            final snackBar = SnackBar(
-                              backgroundColor: Colors.blueAccent,
-                              content: Row(
-                                children: [
-                                  const Icon(Icons.check_circle_rounded),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                      child: Text("Success", style: Theme.of(context).textTheme.bodyText1)),
-                                ],
-                              ),
-                            );
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                          if(_isConnected == true) {
+                            if (_isCallSuccessful == true) {
+                              await Firestore().addUser(
+                                  _fullName, _address, _cnp);
+                              Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()));
+                              //Navigator.pushReplacementNamed(context, "/polls");
+                              final snackBar = SnackBar(
+                                backgroundColor: Colors.blueAccent,
+                                content: Row(
+                                  children: [
+                                    const Icon(Icons.check_circle_rounded),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                        child: Text("Success", style: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .bodyText1)),
+                                  ],
+                                ),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  snackBar);
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
+                                    title: Text("This email is already in use!"),
+                                  );
+                                },
+                              );
+                            }
                           } else {
                             showDialog(
                               context: context,
                               builder: (BuildContext context) {
                                 return const AlertDialog(
-                                  title: Text("This email is already in use"),
+                                  title: Text("You are not connected to the internet!"),
                                 );
                               },
                             );

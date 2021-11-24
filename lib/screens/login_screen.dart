@@ -1,10 +1,10 @@
 import 'package:fingerprin_voting_app/services/auth.dart';
 import 'package:fingerprin_voting_app/screens/register_screen.dart';
+import 'package:fingerprin_voting_app/services/check_things.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:fingerprin_voting_app/services/database.dart';
 
 import 'home_screen.dart';
 
@@ -103,21 +103,33 @@ class _LoginScreenState extends State<LoginScreen> {
                   ]),
                 ),
                 Row(
+
                     children: [
                       SizedBox(
                         height: 56,
-                        width: 370,
+                        width: 360,
                         child: ElevatedButton(
                             onPressed: (email.isEmpty == true || _password.isEmpty == true)
                                 ? null
                                 : () async {
+                              bool _isConnected = await CheckThings().internet("www.firebase.com");
                               bool _isCallSuccessful = await AuthService().signInWithEmailAndPassword(email, _password);
-                              if (_isCallSuccessful == true){
-                              final isAuthenticated = await LocalAuthApi.authenticate();
-                              if(isAuthenticated){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-                              }
-
+                              if(_isConnected == true){
+                                if (_isCallSuccessful == true){
+                                  final isAuthenticated = await LocalAuthApi.authenticate();
+                                  if(isAuthenticated){
+                                    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+                                  }
+                                }
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
+                                      title: Text("You are not connected to the internet!"),
+                                    );
+                                  },
+                                );
                               }
                             },
                             child: const Text("Login")
