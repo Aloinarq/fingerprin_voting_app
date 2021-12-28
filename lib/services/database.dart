@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-class Firestore {
+class Database {
   final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
+  var db = FirebaseFirestore.instance;
   CollectionReference users = FirebaseFirestore.instance.collection('users');
-  CollectionReference candidates = FirebaseFirestore.instance.collection('candidates');
+
 
   Future<void> addUser(String fullName, String address, String cnp) async {
     return users.add({
@@ -16,7 +17,5 @@ class Firestore {
       .catchError((onError) => print(onError.toString()));
   }
 
-  Future<void> getUsers() async {
 
-  }
 }

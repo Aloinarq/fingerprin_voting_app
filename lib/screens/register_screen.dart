@@ -1,7 +1,6 @@
 import 'package:fingerprin_voting_app/services/check_things.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fingerprin_voting_app/services/auth.dart';
 import 'package:fingerprin_voting_app/services/database.dart';
 
@@ -156,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           bool _isCallSuccessful = await AuthService().registerEmailPassword(_email, _password);
                           if(_isConnected == true) {
                             if (_isCallSuccessful == true) {
-                              await Firestore().addUser(
+                              await Database().addUser(
                                   _fullName, _address, _cnp);
                               Navigator.push(context, MaterialPageRoute(
                                   builder: (context) => const HomeScreen()));
