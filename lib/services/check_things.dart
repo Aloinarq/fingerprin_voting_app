@@ -1,8 +1,6 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
 
 class CheckThings {
-
   Future internet(String _IP) async {
     try {
       final result = await InternetAddress.lookup(_IP);
@@ -14,5 +12,4 @@ class CheckThings {
       return false;
     }
   }
-
 }

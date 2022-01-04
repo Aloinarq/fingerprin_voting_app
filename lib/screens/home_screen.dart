@@ -49,11 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Row(
                       children: [
                         GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CandidatesScreen(
-                                      actualID: provider.pollList[index].id))),
+                          onTap: () => setState(() {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CandidatesScreen(
+                                        actualID:
+                                            provider.pollList[index].id)));
+                          }),
                           child: Container(
                             width: 350,
                             height: 30,

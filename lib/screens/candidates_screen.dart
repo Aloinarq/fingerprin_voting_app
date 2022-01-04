@@ -45,12 +45,14 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                   return Row(
                     children: [
                       GestureDetector(
-                        onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DetailsScreen(
-                                    actualID: provider.getPoll(actualID).id,
-                                    index: index))),
+                        onTap: () => setState(() {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DetailsScreen(
+                                      actualID: provider.getPoll(actualID).id,
+                                      index: index)));
+                        }),
                         child: Container(
                           width: 350,
                           height: 30,
