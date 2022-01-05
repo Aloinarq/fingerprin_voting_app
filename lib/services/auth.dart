@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future registerEmailPassword(String email, String password) async {
-    try{
-      UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       return true;
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
       return false;
     }
@@ -17,13 +17,16 @@ class AuthService {
   Future signInWithEmailAndPassword(String email, String password) async {
     try {
       final User? user = (await _auth.signInWithEmailAndPassword(
-          email: email,
-          password: password
-      )).user;
+              email: email, password: password))
+          .user;
       return true;
-    } catch(e) {
+    } catch (e) {
       print(e.toString());
       return false;
     }
-    }
+  }
+
+  Future<void> mySignOut() async {
+    _auth.signOut();
+  }
 }

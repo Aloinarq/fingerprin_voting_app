@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(children: [
                     SizedBox(
                       height: 56,
-                      width: 360,
+                      width: 341,
                       child: ElevatedButton(
                           onPressed: (email.isEmpty == true ||
                                   _password.isEmpty == true)
@@ -121,8 +121,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           email, _password);
                                   if (_isConnected == true) {
                                     if (_isCallSuccessful == true) {
-                                      // final isAuthenticated = await LocalAuthApi.authenticate();
-                                      bool isAuthenticated = true;
+                                      final isAuthenticated =
+                                          await LocalAuthApi.authenticate();
                                       if (isAuthenticated) {
                                         Navigator.push(
                                             context,

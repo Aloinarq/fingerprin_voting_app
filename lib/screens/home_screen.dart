@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             provider.pollList[index].id)));
                           }),
                           child: Container(
-                            width: 350,
+                            width: 341,
                             height: 30,
                             decoration: myBoxDecoration(),
                             child: Center(

@@ -1,3 +1,5 @@
+import 'package:fingerprin_voting_app/screens/login_screen.dart';
+import 'package:fingerprin_voting_app/services/auth.dart';
 import 'package:flutter/material.dart';
 
 class Sidebar extends StatelessWidget {
@@ -56,6 +58,17 @@ class Sidebar extends StatelessWidget {
                     );
                   },
                 );
+              },
+            ),
+            ListTile(
+              title: const Text('Sign out'),
+              onTap: () {
+                Navigator.pop(context);
+                AuthService().mySignOut();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
               },
             ),
           ],

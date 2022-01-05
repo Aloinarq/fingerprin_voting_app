@@ -1,9 +1,14 @@
+import 'dart:io';
+
 import 'package:fingerprin_voting_app/providers/poll_provider.dart';
+import 'package:fingerprin_voting_app/services/auth.dart';
 import 'package:fingerprin_voting_app/services/database.dart';
 import 'package:fingerprin_voting_app/widgets/sidebar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'login_screen.dart';
 
 class DetailsScreen extends StatefulWidget {
   String actualID;
@@ -36,7 +41,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   child: Column(
                     children: [
                       Container(
-                        width: 350,
+                        width: 341,
                         height: 500,
                         child: Text(
                           provider
@@ -55,14 +60,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         child: ElevatedButton(
                             onPressed: _isButtonDisabled
                                 ? null
-                                : () {
-                                    setState(() {
-                                      Database().addVote(provider
-                                          .getPoll(actualID)
-                                          .candidateList[index]
-                                          .fullName);
-                                      _isButtonDisabled = true;
-                                    });
+                                : () async {
+                                    final isAuthenticated =
+                                        await LocalAuthApi.authenticate();
+                                    if (isAuthenticated) {
+                                      setState(() {
+                                        Database().addVote(provider
+                                            .getPoll(actualID)
+                                            .candidateList[index]
+                                            .fullName);
+                                        _isButtonDisabled = true;
+                                      });
+                                    }
+                                    sleep(Duration(seconds: 3));
+                                    AuthService().mySignOut();
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginScreen()));
                                   },
                             child: Text(
                                 _isButtonDisabled ? "Vote saved" : "Vote")),

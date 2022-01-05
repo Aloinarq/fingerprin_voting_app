@@ -54,7 +54,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                                       index: index)));
                         }),
                         child: Container(
-                          width: 350,
+                          width: 341,
                           height: 30,
                           decoration: myBoxDecoration(),
                           child: Center(
