@@ -1,4 +1,4 @@
-# fingerprin_voting_app
+# fingerprint_voting_app
 
 A fingerprint voting app for elections etc.
 
